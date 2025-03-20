@@ -1,0 +1,74 @@
+{% render 'partials/head.liquid' title: webinar.title %}
+
+<main id="content">
+
+    <h1>{{ webinar.title }}</h1>
+
+    <div class="webinar-details">
+        <div class="webinar-video">
+            {% if webinar.video %}
+            <video controls class="webinar-video">
+                <source src="https://fdnd-agency.directus.app/assets/{{ webinar.video }}" />
+            </video>
+            {% else %}
+            <p>Geen video beschikbaar.</p>
+            {% endif %}
+        </div>
+
+        <div class="webinar-info">
+            <p><strong>Views:</strong> {{ webinar.views }}</p>
+            <p><strong>Date:</strong> {{ webinar.date | date: "%d %b %Y" }}</p>
+            <details>
+                <summary><strong>Description:</strong></summary>
+                <p>{{ webinar.description }}</p>
+            </details>
+        </div>
+
+        <div class="webinar-categories">
+            {% for category in webinar.categories %}
+            <p>{{ category.avl_categories_id.name }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="webinars-transcript">
+            {% for transcript in webinar.transcript %}
+            <p>{{ category.avl_webinars_id.transcript }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="webinar-speakers">
+            <h3>Speakers:</h3>
+            <ul>
+                {% for speaker in webinar.speakers %}
+                <li>
+                    <img src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"
+                        alt="Speaker Picture">
+                    <p>{{ speaker.avl_speakers_id.fullname }}</p>
+                    <p>{{ speaker.avl_speakers_id.entitle }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="webinar-resources">
+            <h3>Resources:</h3>
+            {% if webinar.resources.size > 0 %}
+            <ul>
+                {% for resource in webinar.resources %}
+                <li>
+                    <a href="https://fdnd-agency.directus.app/assets/{{ resource.directus_files_id.filename_disk }}"
+                        target="_blank">
+                        {{ resource.directus_files_id.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Geen resources beschikbaar.</p>
+            {% endif %}
+        </div>
+    </div>
+
+</main>
+
+{% render 'partials/foot.liquid' %}

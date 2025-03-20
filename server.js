@@ -9,7 +9,7 @@ import { Liquid } from 'liquidjs';
 const app = express()
 
 // Maak werken met data uit formulieren iets prettiger
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 // Gebruik de map 'public' voor statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts)
 // Bestanden in deze map kunnen dus door de browser gebruikt worden
@@ -23,8 +23,40 @@ app.engine('liquid', engine.express());
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
 
+// Maak een GET route voor de index (meestal doe je dit in de root, als /)
+app.get('/', async function (request, response) {
+  const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
+  const webinarUrlFilters = "?fields=title,thumbnail,date,slug,categories.*.*,speakers.*.*";
+  const webinarsResponse = await fetch(webinarUrl + webinarUrlFilters);
+  const webinarsResponseJSON = await webinarsResponse.json();
 
-console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en POST routes toe.')
+  // Render index.liquid uit de Views map
+  response.render('index.liquid', { webinars: webinarsResponseJSON.data });
+});
+
+// Route voor alle webinars (overzichtspagina)
+app.get("/webinars/", async function (request, response) {
+  const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
+  const webinarUrlFilters = "?fields=title,views,date,video,duration,resources,slug,thumbnail,categories.*.*,speakers.*.*";
+  const webinarsResponse = await fetch(webinarUrl + webinarUrlFilters);
+  const webinarsResponseJSON = await webinarsResponse.json();
+
+  response.render("webinars.liquid", { webinars: webinarsResponseJSON.data });
+});
+
+// Nieuwe route voor individuele webinars op basis van slug
+app.get("/webinars/:slug", async function (request, response) {
+  const slug = request.params.slug;
+  const webinarUrl = `https://fdnd-agency.directus.app/items/avl_webinars?filter[slug][_eq]=${slug}&fields=title,views,date,video,duration,resources,slug,thumbnail,description,categories.*.*,speakers.*.*`;
+
+  const webinarResponse = await fetch(webinarUrl);
+  const webinarResponseJSON = await webinarResponse.json();
+
+  const webinar = webinarResponseJSON.data[0];
+
+  response.render("webinar-detail.liquid", { webinar });
+});
+
 
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
@@ -61,6 +93,11 @@ app.post(…, async function (request, response) {
   response.redirect(303, …)
 })
 */
+
+
+
+
+
 
 
 // Stel het poortnummer in waar Express op moet gaan luisteren

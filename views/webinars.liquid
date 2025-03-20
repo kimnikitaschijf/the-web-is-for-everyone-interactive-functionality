@@ -1,0 +1,106 @@
+{% if webinars and webinars.size > 0 %}
+    {% render 'partials/head.liquid' title: webinars[0].title %}
+{% else %}
+    {% render 'partials/head.liquid' title: "Webinars" %}
+{% endif %}
+
+<main>
+    <div class="webinar-page">
+        {% for webinar in webinars %}
+
+        <section class="webinar-data">
+
+            {% comment %} webinar video {% endcomment %}
+            {% if webinar.video %}
+                <video controls class="webinar-video">
+                    <source src="https://fdnd-agency.directus.app/assets/{{ webinar.video }}" />
+                </video>
+            {% else %}
+                <p>Geen video beschikbaar.</p>
+            {% endif %}
+            
+            {% comment %} webinar title {% endcomment %}
+            <h1>{{ webinar.title }}</h1>
+
+            {% comment %} webinar date & views {% endcomment %}
+            <ul class="webinars-info">
+                <li>{{ webinar.views }} views</li>
+                <li>{{ webinar.date | date: "%d %b %Y" }}</li>
+            </ul>
+
+            {% comment %} webinar categorie {% endcomment %}
+            {% for categorie in webinar.categories %}
+            <li>
+                <p class="categorie-label">{{ categorie.avl_categories_id.name }}</p>
+            </li>
+            {% endfor %}
+
+            {% comment %} webinar description {% endcomment %}
+
+            <h2>Description</h2>
+
+            <p>{{ webinar.description }}</p>
+            <button class="read-more-link">Read more</button>
+
+
+            {% comment %} webinar speaker, resources & transcript {% endcomment %}
+            <button class="transcript-link">Read transcript</button>
+
+            {% for speaker in webinar.speakers %}
+            <li class="speaker">
+                <div class="left">
+                    <img src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"
+                        alt="">
+
+                    <div class="speaker-info">
+                        <h3>{{ speaker.avl_speakers_id.fullname }}</h3>
+                        <p>{{ speaker.avl_speakers_id.entitle }}</p>
+                    </div>
+                </div>
+
+                <a href="#">About this speaker</a>
+            </li>
+
+            {% endfor %}
+
+            <h2>Resources</h2>
+
+            <ul class="resources">
+
+                {% if webinar.resources and webinar.resources.size > 0 %}
+                {% for resource in webinar.resources %}
+                <li class="resource">
+                    <div class="left-resource">
+                        <img class="file-icon" src="/assets/pdf-icon.svg" alt="">
+                        <di class="info">
+                            <p>{{ resource.directus_files_id.title }}</p>
+                            <p>{{ resource.directus_files_id.filesize | divided_by: 1024.0 | round: 1 }} KB</p>
+                    </div>
+
+                    <div class="right-resource">
+                        <a class="resource-icon"
+                            href="https://fdnd-agency.directus.app/assets/{{ resource.directus_files_id.filename_disk }}"
+                            target="_blank">
+                            <img src="/assets/eye-icon.svg" alt="Bekijk pdf">
+                        </a>
+                        <a class="resource-icon"
+                            href="https://fdnd-agency.directus.app/assets/{{ resource.directus_files_id.filename_disk }}?download=1"
+                            download="{{ resource.directus_files_id.filename_download }}">
+                            <img src="/assets/download-icon.svg" alt="Download pdf">
+                        </a>
+                    </div>
+                </li>
+
+                {% endfor %}
+
+                {% else %}
+                <p>Er zijn geen resources voor deze webinar beschikbaar.</p>
+                {% endif %}
+
+            </ul>
+
+            {% endfor %}
+        </section>
+</main>
+
+{% render 'partials/foot.liquid' %}
