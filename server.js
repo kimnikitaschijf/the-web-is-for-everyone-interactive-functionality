@@ -37,7 +37,7 @@ app.get('/', async function (request, response) {
 // Route voor alle webinars (overzichtspagina)
 app.get("/webinars/", async function (request, response) {
   const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
-  const webinarUrlFilters = "?fields=title,views,date,video,duration,resources,slug,thumbnail,categories.*.*,speakers.*.*";
+  const webinarUrlFilters = "?fields=title,views,video,date,duration,resources,slug,thumbnail,categories.*.*,speakers.*.*,transcript";
   const webinarsResponse = await fetch(webinarUrl + webinarUrlFilters);
   const webinarsResponseJSON = await webinarsResponse.json();
 
@@ -47,7 +47,7 @@ app.get("/webinars/", async function (request, response) {
 // Nieuwe route voor individuele webinars op basis van slug
 app.get("/webinars/:slug", async function (request, response) {
   const slug = request.params.slug;
-  const webinarUrl = `https://fdnd-agency.directus.app/items/avl_webinars?filter[slug][_eq]=${slug}&fields=title,views,date,video,duration,resources,slug,thumbnail,description,categories.*.*,speakers.*.*`;
+  const webinarUrl = `https://fdnd-agency.directus.app/items/avl_webinars?filter[slug][_eq]=${slug}&fields=title,views,date,video,duration,resources,slug,thumbnail,transcript,description,categories.*.*,speakers.*.*`;
 
   const webinarResponse = await fetch(webinarUrl);
   const webinarResponseJSON = await webinarResponse.json();

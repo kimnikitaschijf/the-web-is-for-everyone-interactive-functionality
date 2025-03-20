@@ -1,15 +1,30 @@
+/* Algemene instellingen */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body {
+body, html {
+    height: 100%;
+    margin: 0;
     background-color: var(--background-color);
     font-family: var(--font);
-    min-height: 100vh;
 }
 
+main {
+    width: 85vw;
+    margin: 0 auto;
+    min-height: 100vh; /* Zorgt ervoor dat de footer onderaan staat als er weinig inhoud is */
+    padding-bottom: 50px; /* Zorgt voor wat ruimte tussen de inhoud en de footer */
+    transition: margin-top 0.5s ease-in-out;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ---------- :root variabelen ---------- */
 :root {
     --font: "lato", sans-serif;
     --heading-font: "VagRundschrift", sans-serif;
@@ -26,22 +41,18 @@ body {
     --font-size-5xl: 3rem;
     --font-size-6xl: 3.5rem;
 
-    /* ---------- Colors: Text ---------- */
+    /* ---------- Colors ---------- */
     --text-color: #000000;
     --semi-text-color: #000000d0;
     --alt-text-color: #ffffff;
-
-    /* ---------- Colors: General ---------- */
     --primary-color: #6b0025;
     --secondary-color: #782743b1;
     --background-color: #f0e5e9;
-    --background-color-alt: #ffffff;
     --background-category-color: #a4647aab;
     --hover-state-color: #c18ea0;
     --accent-color: #7b1838;
     --menu-color: #58001e;
     --menu-color-hover: #58001d77;
-
 
     /* ---------- Paddings ---------- */
     --padding-button: 8px 16px;
@@ -58,6 +69,7 @@ body {
     --focus: solid 3px hsl(321, 58%, 55%);
 }
 
+/* ---------- Algemene element styling ---------- */
 ul li {
     list-style: none;
 }
@@ -79,6 +91,86 @@ button {
     cursor: pointer;
 }
 
+/* ---------- Stijl voor de footer ---------- */
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--alt-text-color);
+    position: relative;
+    padding: 10px 25px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+footer a {
+    color: var(--alt-text-color);
+    text-decoration: none;
+}
+
+/* Zorg ervoor dat de footer onderaan blijft als er meer inhoud is */
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* footer styling */
+footer img {
+    display: none;
+}
+
+/* ---------- Navigatie styling ---------- */
+nav {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    flex-wrap: nowrap;
+}
+
+nav .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+nav .nav-links.active {
+    max-height: 300px;
+}
+
+nav .nav-links a {
+    color: var(--alt-text-color);
+    background-color: var(--menu-color);
+    text-decoration: none;
+    padding: 1rem;
+    text-align: center;
+    display: block;
+}
+
+/* Hamburger menu */
+.menu-toggle {
+    display: flex;
+    cursor: pointer;
+}
+
+.menu-toggle img {
+    width: 40px;
+    height: 40px;
+}
+
+/* ---------- Back button styling ---------- */
 .back-btn {
     display: inline-flex;
     color: var(--alt-text-color);
@@ -96,4 +188,17 @@ button {
 
 .back-btn:hover {
     background-color: var(--hover-state-color);
+}
+
+/* ---------- Categorie styling ---------- */
+.categorie-box {
+    margin-bottom: 2rem;
+    margin-left: 0.5rem;
+    padding: var(--padding-button);
+    width: fit-content;
+    text-transform: capitalize;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    color: var(--alt-text-color);
 }

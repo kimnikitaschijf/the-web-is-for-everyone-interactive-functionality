@@ -1,4 +1,57 @@
+.details-page-h1 {
+    font-weight: 800;
+    text-align: center;
+    text-align: left;
+    margin-left: 0.5rem;
+    margin-top: -0.3rem;
+    font-size: 1.2rem;
+}
+
 .webinar-video {
-    height: 200px;
-    width: 300px;
+    width: 22rem;
+    margin: 0.8rem auto;
+}
+
+.webinar-info {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.2rem;
+    margin-left: 0.6rem;
+    color: var(--primary-color);
+}
+
+.speakers-image {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--border-radius-md);
+}
+
+/* transcript, speaker & resources knop */
+.details-button {
+    margin-left: 0.5rem;
+    padding: var(--padding-button);
+    width: fit-content;
+    text-transform: capitalize;
+    background-color: var(--background-category-color);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    color: var(--text-color);
+}
+
+.back-button {
+    margin-top: 1.5rem;
+    padding: var(--padding-button);
+    width: fit-content;
+    text-transform: capitalize;
+    background-color: var(--background-category-color);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    color: var(--text-color);
+}
+
+.buttons-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: -0.5rem;
 }
