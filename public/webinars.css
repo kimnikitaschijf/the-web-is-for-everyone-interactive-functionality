@@ -1,28 +1,27 @@
 .details-page-h1 {
     font-weight: 800;
     text-align: left;
-    margin-left: 0.5rem;
-    margin-top: -0.3rem;
     font-size: 1.2rem;
 }
 
 .webinar-video {
-    width: 22rem;
+    width: 100%; /* Maak de video responsive */
+    max-width: 45rem;
+    margin: auto;
+    padding: 0.5rem;
 }
 
-.webinar-info {
+.speaker-info {
     display: flex;
-    justify-content: flex-start;
-    gap: 1.2rem;
-    margin-left: 0.6rem;
-    color: var(--primary-color);
+    align-items: center;
 }
 
 .speakers-image {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    margin: 0.5rem;
+    margin: 1rem;
+    border: solid 1px var(--text-color);
 }
 
 .back-button {
@@ -36,12 +35,146 @@
     color: var(--text-color);
 }
 
-.buttons-layout {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: -0.5rem;
+.categorie-box {
+    padding: var(--padding-button);
+    width: fit-content;
+    text-transform: capitalize;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    color: var(--alt-text-color);
+    margin: 1rem;
 }
+
+.details-field {
+    padding: var(--padding-button);
+    width: 100%;
+    max-width: 45rem;
+    margin: 1.5rem;
+    justify-self: center;
+    text-transform: capitalize;
+    background-color: var(--secondary-background-color);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    color: var(--alt-text-color);
+}
+
+.detail-buttons-details {
+    display: flex;
+    gap: 2rem;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.description-summary {
+    color: var(--text-color);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+details[open] p {
+    color: var(--text-color);
+    width: 100%; /* Maak de p responsive */
+    max-width: 23rem;
+}
+
+.transcript-button,
+.resource-button {
+    width: fit-content;
+    padding: 0.6rem;
+    margin: 1rem 0rem 0rem 1rem;
+    border: none;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-md);
+    color: var(--alt-text-color);
+}
+
+h2,
+h3 {
+    margin: 1rem 0 0rem 1rem;
+    font-weight: bold;
+}
+
+.sub-title {
+    margin: 1rem 0 0rem 1rem;
+}
+
+.form-section {
+    border-radius: var(--border-radius-md);
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+.comment-section {
+    /* background-color: var(--comment-background-color); */
+    border-radius: var(--border-radius-md);
+    /* padding: 0rem 1rem; */
+    height: 300px;
+    /* overflow-y: scroll; */
+    width: 100%; /* Maak de comment-sectie responsief */
+    max-width: 650px;
+    color: var(--text-color);
+}
+
+.comments {
+    display: grid;
+    column-gap: var(--gap);
+    align-items: center;
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+.replies {
+    margin-left: 1rem;
+}
+
+.sub-title {
+    font-weight: bold;
+    margin: 1rem 0rem 0rem 1rem;
+}
+
+form {
+    justify-self: center;
+    width: 100%;
+    max-width: 45rem;
+}
+
+input {
+    width: 100%; /* Maak input veld responsive */
+    max-width: 17rem;
+    padding: 0.8rem;
+    gap: 0;
+    border: none;
+    border-radius: var(--border-radius-input);
+}
+
+button {
+    width: 120px;
+    padding: 0.8rem;
+    border: none;
+    background-color: var(--primary-color);
+    margin-left: -0.2rem;
+    border-radius: var(--border-radius-send);
+    color: var(--alt-text-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* tablet formaat */
@@ -207,6 +340,20 @@
         justify-content: flex-start;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Responsive voor min-width 1024px (Desktop en Large Tablets) */
