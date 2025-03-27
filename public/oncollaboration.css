@@ -16,9 +16,7 @@ html {
 main {
     margin: 0 auto;
     min-height: 100vh;
-    /* Zorgt ervoor dat de footer onderaan staat als er weinig inhoud is */
     padding-bottom: 50px;
-    /* Zorgt voor wat ruimte tussen de inhoud en de footer */
     transition: margin-top 0.5s ease-in-out;
 }
 
@@ -31,7 +29,6 @@ a {
     --font: "lato", sans-serif;
     --heading-font: "VagRundschrift", sans-serif;
 
-    /* ---------- Font sizes ---------- */
     --font-size-xs: 0.5rem;
     --font-size-sm: 0.75rem;
     --font-size-md: 1rem;
@@ -43,46 +40,28 @@ a {
     --font-size-5xl: 3rem;
     --font-size-6xl: 3.5rem;
 
-    /* ---------- Colors ---------- */
     --text-color: #333333;
-    /* Donkergrijs voor standaard tekst */
     --semi-text-color: #555555;
-    /* Iets lichter grijs voor secundaire tekst */
     --alt-text-color: #ffffff;
-    /* Wit voor alternatieve tekst op donkere achtergronden */
     --primary-color: #005b96;
-    /* Diep blauw */
     --secondary-color: #008c72;
-    /* Zeegroen */
     --background-color: #f4f4f4;
-    /* Lichtgrijs */
     --secondary-background-color: #e0e0e0;
-    /* Iets donkerder grijs */
     --background-category-color: #cce7ff;
-    /* Lichtblauw */
     --hover-state-color: #66c2a5;
-    /* Licht zeegroen */
     --accent-color: #003f5c;
-    /* Donkerblauw */
     --menu-color: #004c70;
-    /* Middelblauw */
     --menu-color-hover: #003f5c;
-    /* Donkerblauw */
     --comment-background-color: #d9f2e6;
-    /* Zeer lichtgroen */
 
-    /* ---------- Paddings ---------- */
     --padding-button: 8px 16px;
     --padding-label: 4px;
-
-    /* ---------- Border radius ---------- */
     --border-radius-sm: 6px;
     --border-radius-md: 12px;
     --border-nav: 3px solid var(--primary-color);
     --border-radius-input: 12px 0px 0px 12px;
     --border-radius-send: 0px 12px 12px 0px;
 
-    /* ---------- Misc ---------- */
     --gap: .5rem;
     --card-max-width: 384px;
     --focus: solid 3px hsl(321, 58%, 55%);
@@ -138,18 +117,84 @@ footer {
     padding: 2rem;
 }
 
-/* footer styling */
 footer img {
     display: none;
 }
-/* Verschuiwing van de content (voor het hamburger menu) */
-#content {
-    transition: transform 0.5s ease-in-out; /* Zorgt ervoor dat de verschuiving vloeiend is bij beide acties */
+
+/* Responsive footer styling */
+footer p {
+    text-align: left;
 }
 
-/* Content verschuift naar beneden wanneer het menu wordt geopend */
-#content.shifted {
-    transform: translateY(250px); /* Dit schuift de content naar beneden */
+/* UL en LI styling voor footer */
+footer ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+}
+
+footer ul li {
+    list-style: none;
+}
+
+footer ul li a {
+    color: var(--alt-text-color);
+    text-decoration: none;
+    padding: 5px 0;
+}
+
+/* Verberg de afbeeldingen op mobiel (standaard) */
+footer img {
+    display: none;
+}
+
+/* ---------- Media queries ---------- */
+
+/* Kleine schermen - onder 768px */
+@media (max-width: 768px) {
+    footer img {
+        display: none; /* Verberg de plaatjes */
+    }
+
+    footer ul {
+        display: block;
+        flex-direction: column;
+    }
+
+    footer p {
+        display: block;
+        text-align: left;
+    }
+}
+
+/* Schermen groter dan 768px maar kleiner dan 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+    footer img {
+        display: block;
+        margin: 0 10px;
+    }
+
+    footer ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+/* Schermen groter dan 1024px */
+@media (min-width: 1024px) {
+    footer img {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    footer ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 2rem;
+    }
 }
 
 /* ---------- Navigatie styling ---------- */
@@ -171,10 +216,8 @@ nav {
 nav .nav-links {
     display: flex;
     gap: 1rem;
-    /* Ruimte tussen de navigatie-items */
 }
 
-/* Standaard nav-links tonen als tekst (bij screens > 768px) */
 nav .nav-links a {
     color: var(--alt-text-color);
     background-color: transparent;
@@ -186,7 +229,6 @@ nav .nav-links a {
 /* Hamburger menu */
 .menu-toggle {
     display: none;
-    /* Verberg het hamburger menu op grotere schermen */
     cursor: pointer;
 }
 
@@ -197,10 +239,8 @@ nav .nav-links a {
 
 /* ---------- Mobiele navigatie instellingen (smaller than 768px) ---------- */
 @media (max-width: 768px) {
-    /* Verberg de standaard nav-links */
     nav .nav-links {
         display: none;
-        /* Verberg de links standaard op mobiel */
         flex-direction: column;
         position: absolute;
         top: 4rem;
@@ -212,19 +252,15 @@ nav .nav-links a {
         transition: height 0.5s ease-in-out;
     }
 
-    /* Nav-links tonen bij actieve status */
     nav .nav-links.active {
         display: flex;
-        height: 300px;  /* Pas aan afhankelijk van je inhoud */
+        height: 300px;
     }
 
-    /* Maak het hamburger menu zichtbaar op mobiel */
     .menu-toggle {
         display: flex;
-        /* Zichtbaar maken op mobiel */
     }
 
-    /* Verschuiif de content naar beneden wanneer het menu actief is */
     #content.shifted {
         transform: translateY(300px);
         transition: transform 0.5s ease-in-out;
@@ -233,12 +269,10 @@ nav .nav-links a {
 
 /* ---------- Als de schermbreedte groter is dan 768px ---------- */
 @media (min-width: 768px) {
-    /* Verberg het hamburger menu bij grotere schermen */
     .menu-toggle {
         display: none;
     }
 
-    /* Nav-links tonen als tekst zonder animatie */
     nav .nav-links {
         display: flex;
         flex-direction: row;
@@ -247,4 +281,3 @@ nav .nav-links a {
         align-items: center;
     }
 }
-
