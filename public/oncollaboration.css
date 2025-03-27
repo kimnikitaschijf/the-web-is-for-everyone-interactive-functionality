@@ -207,15 +207,15 @@ nav .nav-links a {
         left: 0;
         width: 100%;
         background-color: var(--primary-color);
-        max-height: 0;
+        height: 0;
         overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
+        transition: height 0.5s ease-in-out;
     }
 
+    /* Nav-links tonen bij actieve status */
     nav .nav-links.active {
         display: flex;
-        max-height: 300px;
-        /* Het menu zal openen tot 300px */
+        height: 300px;  /* Pas aan afhankelijk van je inhoud */
     }
 
     /* Maak het hamburger menu zichtbaar op mobiel */
