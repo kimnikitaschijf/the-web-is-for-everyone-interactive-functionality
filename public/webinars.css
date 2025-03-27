@@ -1,6 +1,5 @@
 .details-page-h1 {
     font-weight: 800;
-    text-align: center;
     text-align: left;
     margin-left: 0.5rem;
     margin-top: -0.3rem;
@@ -21,21 +20,10 @@
 }
 
 .speakers-image {
-    width: 20px;
-    height: 20px;
-    border-radius: var(--border-radius-md);
-}
-
-/* transcript, speaker & resources knop */
-.details-button {
-    margin-left: 0.5rem;
-    padding: var(--padding-button);
-    width: fit-content;
-    text-transform: capitalize;
-    background-color: var(--background-category-color);
-    border: none;
-    border-radius: var(--border-radius-sm);
-    color: var(--text-color);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0.5rem;
 }
 
 .back-button {
@@ -54,4 +42,149 @@
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: -0.5rem;
+}
+
+
+/* tablet formaat */
+@media (min-width: 768px) {
+    .webinar-video {
+        width: 41rem;
+        margin: 0.8rem auto;
+    }
+
+    .info-text {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+
+    .speaker-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .speaker-text {
+        margin: 1rem 0.5rem;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .webinar-info {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        margin: 0.5rem;
+        color: var(--primary-color);
+        gap: 0rem;
+    }
+
+    .webinar-info p:last-of-type {
+        margin-right: auto;
+        grid-row: 2;
+    }
+
+    .details-field {
+        padding: var(--padding-button);
+        width: 650px;
+        text-transform: capitalize;
+        background-color: var(--secondary-background-color);
+        border: none;
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        color: var(--alt-text-color);
+    }
+
+    .description-info {
+       display: flex;
+    }
+}
+
+.form-section {
+    border-radius: var(--border-radius-md);
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+.comment-section {
+    /* background-color: var(--comment-background-color); */
+    border-radius: var(--border-radius-md);
+    /* padding: 0rem 1rem; */
+    height: 300px;
+    /* overflow-y: scroll; */
+    width: 650px;
+    /* margin: auto; */
+    /* border: solid 1.2px black; */
+}
+
+.comments {
+    display: grid;
+    column-gap: var(--gap);
+    align-items: center;
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+.replies {
+    margin-left: 1rem;
+}
+
+.sub-title {
+    font-weight: bold;
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+form {
+    justify-self: center;
+}
+
+input {
+    width: 530px;
+    padding: 0.8rem;
+    gap: 0;
+    border: none;
+    border-radius: var(--border-radius-input);
+
+}
+
+button {
+    width: 120px;
+    padding: 0.8rem;
+    border: none;
+    background-color: var(--primary-color);
+    margin-left: -0.2rem;
+    border-radius: var(--border-radius-send);
+    color: var(--alt-text-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h2,
+h3 {
+    margin: 1rem 0 1rem 0;
+    font-weight: bold;
+}
+
+.categorie-box {
+    margin: auto;
+    padding: var(--padding-button);
+    width: fit-content;
+    text-transform: capitalize;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    color: var(--alt-text-color);
 }

@@ -48,11 +48,14 @@ a {
     --primary-color: #6b0025;
     --secondary-color: #782743b1;
     --background-color: #f0e5e9;
+    --secondary-background-color: #d8cfd3;
     --background-category-color: #a4647aab;
     --hover-state-color: #c18ea0;
     --accent-color: #7b1838;
     --menu-color: #58001e;
     --menu-color-hover: #58001d77;
+    --comment-background-color: #e3c0cc;
+
 
     /* ---------- Paddings ---------- */
     --padding-button: 8px 16px;
@@ -62,6 +65,8 @@ a {
     --border-radius-sm: 6px;
     --border-radius-md: 12px;
     --border-nav: 3px solid var(--primary-color);
+    --border-radius-input: 12px 0px 0px 12px;
+    --border-radius-send: 0px 12px 12px 0px;
 
     /* ---------- Misc ---------- */
     --gap: .5rem;
@@ -191,7 +196,7 @@ nav .nav-links a {
 }
 
 /* ---------- Categorie styling ---------- */
-.categorie-box {
+/* .categorie-box {
     margin-bottom: 2rem;
     margin-left: 0.5rem;
     padding: var(--padding-button);
@@ -201,4 +206,4 @@ nav .nav-links a {
     border: none;
     border-radius: var(--border-radius-sm);
     color: var(--alt-text-color);
-}
+} */

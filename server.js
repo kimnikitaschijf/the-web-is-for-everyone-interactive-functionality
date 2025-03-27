@@ -35,26 +35,37 @@ app.get('/', async function (request, response) {
 });
 
 // Route voor alle webinars (overzichtspagina)
-app.get("/webinars/", async function (request, response) {
-  const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
-  const webinarUrlFilters = "?fields=title,views,video,date,duration,resources,slug,thumbnail,categories.*.*,speakers.*.*,transcript";
-  const webinarsResponse = await fetch(webinarUrl + webinarUrlFilters);
-  const webinarsResponseJSON = await webinarsResponse.json();
+// app.get("/webinars/", async function (request, response) {
+//   const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
+//   const webinarUrlFilters = "?fields=title,views,video,date,duration,resources,slug,thumbnail,categories.*.*,speakers.*.*,transcript";
+//   const webinarsResponse = await fetch(webinarUrl + webinarUrlFilters);
+//   const webinarsResponseJSON = await webinarsResponse.json();
 
-  response.render("webinars.liquid", { webinars: webinarsResponseJSON.data });
-});
+//   response.render("webinars.liquid", { webinars: webinarsResponseJSON.data });
+// });
 
 // Nieuwe route voor individuele webinars op basis van slug
 app.get("/webinars/:slug", async function (request, response) {
   const slug = request.params.slug;
-  const webinarUrl = `https://fdnd-agency.directus.app/items/avl_webinars?filter[slug][_eq]=${slug}&fields=title,views,date,video,duration,resources,slug,thumbnail,transcript,description,categories.*.*,speakers.*.*`;
+  
+  // haal webinar ID op
+  const webinarID = await fetch("https://fdnd-agency.directus.app/items/avl_webinars?fields=id&filter[slug][_eq]=" + slug)
+  const webinarIDJSON = await webinarID.json();
+  const webID = webinarIDJSON.data[0].id;
 
-  const webinarResponse = await fetch(webinarUrl);
+  // haal alle data van het webinar op
+  const webinarResponse = await fetch(`https://fdnd-agency.directus.app/items/avl_webinars?filter[slug][_eq]=${slug}&fields=title,id,views,date,video,duration,resources.*.*,slug,thumbnail,transcript,description,categories.*.*,speakers.*.*`);
   const webinarResponseJSON = await webinarResponse.json();
 
-  const webinar = webinarResponseJSON.data[0];
+  // haal alle data van de comments op
+  const webinarComments = await fetch("https://fdnd-agency.directus.app/items/avl_comments?filter[webinar_id][_eq]=" + webID)
+  const webinarCommentsJSON = await webinarComments.json();
 
-  response.render("webinar-detail.liquid", { webinar });
+
+  response.render("webinar-detail.liquid", {
+    webinar: webinarResponseJSON.data[0],
+    comments: webinarCommentsJSON.data,
+  });
 });
 
 
@@ -66,6 +77,27 @@ app.get(…, async function (request, response) {
   response.render(…)
 })
 */
+
+
+app.post("/webinars/:slug/:id", async function (request, response) {
+
+  const results = await fetch('https://fdnd-agency.directus.app/items/avl_comments', {
+    method: 'POST',
+    body: JSON.stringify({
+      webinar_id: request.params.id,
+      content: request.body.comment
+    }),
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  });
+
+  console.log(results);
+  response.redirect(303, `/webinars/${request.params.slug}`)
+
+
+})
+
 
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.post.method over app.post()
