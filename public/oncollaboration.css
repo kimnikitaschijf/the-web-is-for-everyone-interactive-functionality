@@ -42,19 +42,20 @@ a {
     --font-size-6xl: 3.5rem;
 
     /* ---------- Colors ---------- */
-    --text-color: #000000;
-    --semi-text-color: #000000d0;
-    --alt-text-color: #ffffff;
-    --primary-color: #6b0025;
-    --secondary-color: #782743b1;
-    --background-color: #f0e5e9;
-    --secondary-background-color: #d8cfd3;
-    --background-category-color: #a4647aab;
-    --hover-state-color: #c18ea0;
-    --accent-color: #7b1838;
-    --menu-color: #58001e;
-    --menu-color-hover: #58001d77;
-    --comment-background-color: #e3c0cc;
+    --text-color: #333333; /* Donkergrijs voor standaard tekst */
+    --semi-text-color: #555555; /* Iets lichter grijs voor secundaire tekst */
+    --alt-text-color: #ffffff; /* Wit voor alternatieve tekst op donkere achtergronden */
+    --primary-color: #005b96; /* Diep blauw */
+    --secondary-color: #008c72; /* Zeegroen */
+    --background-color: #f4f4f4; /* Lichtgrijs */
+    --secondary-background-color: #e0e0e0; /* Iets donkerder grijs */
+    --background-category-color: #cce7ff; /* Lichtblauw */
+    --hover-state-color: #66c2a5; /* Licht zeegroen */
+    --accent-color: #003f5c; /* Donkerblauw */
+    --menu-color: #004c70; /* Middelblauw */
+    --menu-color-hover: #003f5c; /* Donkerblauw */
+    --comment-background-color: #d9f2e6; /* Zeer lichtgroen */
+
 
 
     /* ---------- Paddings ---------- */
