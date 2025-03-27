@@ -5,7 +5,8 @@
     padding: 0;
 }
 
-body, html {
+body,
+html {
     height: 100%;
     margin: 0;
     background-color: var(--background-color);
@@ -13,10 +14,11 @@ body, html {
 }
 
 main {
-    width: 85vw;
     margin: 0 auto;
-    min-height: 100vh; /* Zorgt ervoor dat de footer onderaan staat als er weinig inhoud is */
-    padding-bottom: 50px; /* Zorgt voor wat ruimte tussen de inhoud en de footer */
+    min-height: 100vh;
+    /* Zorgt ervoor dat de footer onderaan staat als er weinig inhoud is */
+    padding-bottom: 50px;
+    /* Zorgt voor wat ruimte tussen de inhoud en de footer */
     transition: margin-top 0.5s ease-in-out;
 }
 
@@ -42,21 +44,32 @@ a {
     --font-size-6xl: 3.5rem;
 
     /* ---------- Colors ---------- */
-    --text-color: #333333; /* Donkergrijs voor standaard tekst */
-    --semi-text-color: #555555; /* Iets lichter grijs voor secundaire tekst */
-    --alt-text-color: #ffffff; /* Wit voor alternatieve tekst op donkere achtergronden */
-    --primary-color: #005b96; /* Diep blauw */
-    --secondary-color: #008c72; /* Zeegroen */
-    --background-color: #f4f4f4; /* Lichtgrijs */
-    --secondary-background-color: #e0e0e0; /* Iets donkerder grijs */
-    --background-category-color: #cce7ff; /* Lichtblauw */
-    --hover-state-color: #66c2a5; /* Licht zeegroen */
-    --accent-color: #003f5c; /* Donkerblauw */
-    --menu-color: #004c70; /* Middelblauw */
-    --menu-color-hover: #003f5c; /* Donkerblauw */
-    --comment-background-color: #d9f2e6; /* Zeer lichtgroen */
-
-
+    --text-color: #333333;
+    /* Donkergrijs voor standaard tekst */
+    --semi-text-color: #555555;
+    /* Iets lichter grijs voor secundaire tekst */
+    --alt-text-color: #ffffff;
+    /* Wit voor alternatieve tekst op donkere achtergronden */
+    --primary-color: #005b96;
+    /* Diep blauw */
+    --secondary-color: #008c72;
+    /* Zeegroen */
+    --background-color: #f4f4f4;
+    /* Lichtgrijs */
+    --secondary-background-color: #e0e0e0;
+    /* Iets donkerder grijs */
+    --background-category-color: #cce7ff;
+    /* Lichtblauw */
+    --hover-state-color: #66c2a5;
+    /* Licht zeegroen */
+    --accent-color: #003f5c;
+    /* Donkerblauw */
+    --menu-color: #004c70;
+    /* Middelblauw */
+    --menu-color-hover: #003f5c;
+    /* Donkerblauw */
+    --comment-background-color: #d9f2e6;
+    /* Zeer lichtgroen */
 
     /* ---------- Paddings ---------- */
     --padding-button: 8px 16px;
@@ -78,6 +91,7 @@ a {
 /* ---------- Algemene element styling ---------- */
 ul li {
     list-style: none;
+    color: var(--text-color);
 }
 
 :focus {
@@ -98,7 +112,6 @@ button {
 }
 
 /* ---------- Stijl voor de footer ---------- */
-
 footer {
     background-color: var(--primary-color);
     color: var(--alt-text-color);
@@ -122,11 +135,21 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    padding: 2rem;
 }
 
 /* footer styling */
 footer img {
     display: none;
+}
+/* Verschuiwing van de content (voor het hamburger menu) */
+#content {
+    transition: transform 0.5s ease-in-out; /* Zorgt ervoor dat de verschuiving vloeiend is bij beide acties */
+}
+
+/* Content verschuift naar beneden wanneer het menu wordt geopend */
+#content.shifted {
+    transform: translateY(250px); /* Dit schuift de content naar beneden */
 }
 
 /* ---------- Navigatie styling ---------- */
@@ -139,35 +162,31 @@ nav {
     flex-wrap: nowrap;
 }
 
+.logo-nav {
+    width: 150px;
+    height: auto;
+}
+
+/* Nav links standaard styling */
 nav .nav-links {
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 4rem;
-    left: 0;
-    width: 100%;
-    background-color: var(--primary-color);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out;
+    gap: 1rem;
+    /* Ruimte tussen de navigatie-items */
 }
 
-nav .nav-links.active {
-    max-height: 300px;
-}
-
+/* Standaard nav-links tonen als tekst (bij screens > 768px) */
 nav .nav-links a {
     color: var(--alt-text-color);
-    background-color: var(--menu-color);
+    background-color: transparent;
     text-decoration: none;
     padding: 1rem;
     text-align: center;
-    display: block;
 }
 
 /* Hamburger menu */
 .menu-toggle {
-    display: flex;
+    display: none;
+    /* Verberg het hamburger menu op grotere schermen */
     cursor: pointer;
 }
 
@@ -176,35 +195,56 @@ nav .nav-links a {
     height: 40px;
 }
 
-/* ---------- Back button styling ---------- */
-.back-btn {
-    display: inline-flex;
-    color: var(--alt-text-color);
-    background-color: var(--primary-color);
-    font-size: var(--font-size-sm);
-    font-weight: 700;
-    padding: var(--padding-button);
-    border-radius: var(--border-radius-sm);
-    margin: 1em 0;
-    text-transform: capitalize;
-    transition: .2s;
-    border: transparent;
-    cursor: pointer;
+/* ---------- Mobiele navigatie instellingen (smaller than 768px) ---------- */
+@media (max-width: 768px) {
+    /* Verberg de standaard nav-links */
+    nav .nav-links {
+        display: none;
+        /* Verberg de links standaard op mobiel */
+        flex-direction: column;
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+    }
+
+    nav .nav-links.active {
+        display: flex;
+        max-height: 300px;
+        /* Het menu zal openen tot 300px */
+    }
+
+    /* Maak het hamburger menu zichtbaar op mobiel */
+    .menu-toggle {
+        display: flex;
+        /* Zichtbaar maken op mobiel */
+    }
+
+    /* Verschuiif de content naar beneden wanneer het menu actief is */
+    #content.shifted {
+        transform: translateY(300px);
+        transition: transform 0.5s ease-in-out;
+    }
 }
 
-.back-btn:hover {
-    background-color: var(--hover-state-color);
+/* ---------- Als de schermbreedte groter is dan 768px ---------- */
+@media (min-width: 768px) {
+    /* Verberg het hamburger menu bij grotere schermen */
+    .menu-toggle {
+        display: none;
+    }
+
+    /* Nav-links tonen als tekst zonder animatie */
+    nav .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1rem;
+        align-items: center;
+    }
 }
 
-/* ---------- Categorie styling ---------- */
-/* .categorie-box {
-    margin-bottom: 2rem;
-    margin-left: 0.5rem;
-    padding: var(--padding-button);
-    width: fit-content;
-    text-transform: capitalize;
-    background-color: var(--accent-color);
-    border: none;
-    border-radius: var(--border-radius-sm);
-    color: var(--alt-text-color);
-} */

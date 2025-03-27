@@ -5,63 +5,88 @@
     {% comment %} back button {% endcomment %}
     <button onclick="window.location.href='/'" class="back-button"><strong>Return to home</strong></button>
 
-
     {% comment %} webinar video {% endcomment %}
     <div class="webinar-video">
         {% for video in webinar.video %}
-        <video controls class="webinar-video">
-            <source src="https://fdnd-agency.directus.app/assets/{{ webinar.video }}" />
-        </video>
+            <video controls class="webinar-video">
+                <source src="https://fdnd-agency.directus.app/assets/{{ video }}" />
+            </video>
         {% endfor %}
     </div>
 
+    <section class="page-content">
     {% comment %} webinar titel {% endcomment %}
     <h1 class="details-page-h1">{{ webinar.title }}</h1>
 
     {% comment %} grid layout voor info onder titel {% endcomment %}
-    {% comment %} <div class="info-text"> {% endcomment %}
+    <div class="info-text">
 
         {% comment %} speaker info {% endcomment %}
-        {% comment %} <div class="speaker-info">
+        <div class="speaker-info">
             {% for speaker in webinar.speakers %}
-            <img src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"
-                class="speakers-image" alt="Speaker Picture">
-            <p class="speaker-text">{{ speaker.avl_speakers_id.fullname }}</p>
-            <p>{{ speaker.avl_speakers_id.entitle }}</p>
+                <img src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"
+                    class="speakers-image" alt="Speaker Picture">
+
+                <div class="speaker-name">
+                    <p class="speaker-text">{{ speaker.avl_speakers_id.fullname }}</p>
+                    <p class="speaker-text">{{ speaker.avl_speakers_id.entitle }}</p>
+                </div>
             {% endfor %}
         </div>
 
-        <div class="categorie-button"> {% endcomment %}
+        <div class="categorie-button">
             {% comment %} categorie button {% endcomment %}
-            {% comment %} {% for category in webinar.categories %}
-            <p class="categorie-box">{{ category.avl_categories_id.name }}</p>
-            {% endfor %}
+            {% if webinar.categories %}
+                {% for category in webinar.categories %}
+                    <p class="categorie-box">{{ category.avl_categories_id.name }}</p>
+                {% endfor %}
+            {% endif %}
         </div>
-    </div> {% endcomment %}
-
+    </div>
 
     {% comment %} categorie button {% endcomment %}
     <details class="details-field">
-        <summary>
-                <strong>Description</strong>
-                <div class="description-info">
-                <p><strong>Views:</strong> {{ webinar.views }} views</p>
-                <p><strong>Date:</strong> {{ webinar.date | date: "%d %b %Y" }}</p>
-            </div>
-        </summary>
-        <p class="details-button">{{ webinar.description }}</p>
+        <summary class="description-summary"><strong>Description</strong> (click to open)</summary>
+        <div class="description-info">
+            <p><strong>Views:</strong> {{ webinar.views }} views</p>
+            <p><strong>Date:</strong> {{ webinar.date | date: "%d %b %Y" }}</p>
+        </div>
+        <p>{{ webinar.description }}</p>
     </details>
 
+    {% comment %} transcript {% endcomment %}
+    <div class="detail-buttons-details">
+        <details class="transcript-button">
+            <summary><strong>Read transcript</strong></summary>
+            {% if webinar.transcript %}
+                <p>{{ webinar.transcript }}</p>
+            {% else %}
+                <p>No transcript available.</p>
+            {% endif %}
+        </details>
 
+        {% comment %} resources {% endcomment %}
+        <details class="resource-button">
+            <summary><strong>Resources</strong></summary>
+            {% if webinar.resources %}
+                <p>{{ webinar.resources }}</p>
+            {% else %}
+                <p>No resources found</p>
+            {% endif %}
+        </details>
+    </div>
 
     {% comment %} comment sectie {% endcomment %}
-
 
     <h2>Q&A</h2>
     <p class="sub-title">Ask a question</p>
 
     <div class="form-section">
-        <form method="post" action="{{ webinar.slug }}/{{ webinar.id }}">
+        {% if webinar.slug and webinar.id %}
+            <form method="post" action="{{ webinar.slug }}/{{ webinar.id }}">
+        {% else %}
+            <form method="post" action="#">
+        {% endif %}
             <input type="text" name="comment" placeholder="Add a comment...">
             <button type="submit" class="...">Send</button>
         </form>
@@ -71,60 +96,16 @@
         <h3>Comments:</h3>
         <div>
             {% for comment in comments %}
-            {% if comment.parent_id == null %}
-            <p class="comments" comment>{{ comment.content }}</p>
-            {% endif %}
-            {% if comment.parent_id != null %}
-            <p class="replies">{{ comment.content }}</p>
-            {% endif %}
+                {% if comment.parent_id == null %}
+                    <p class="comments">{{ comment.content }}</p>
+                {% endif %}
+                {% if comment.parent_id != null %}
+                    <p class="replies">{{ comment.content }}</p>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
-
-
-
-
-
-    {% comment %} transcript {% endcomment %}
-    {% comment %} <button class="details-button">Read transcript</button> {% endcomment %}
-    {% comment %} {% if webinar.transcript %}
-
-    <p>{{ webinar.transcript }}</p>
-    {% else %}
-    <p>No transcript available.</p>
-    {% endif %} {% endcomment %}
-
-    {% comment %} <button class="details-button">About speaker</button> {% endcomment %}
-
-
-    {% comment %} resources {% endcomment %}
-    {% comment %} <details class="details-button">
-        <summary><strong>Resources</strong></summary>
-        {% if webinar.resources %}
-        <p>{{ webinar.resources }}</p>
-        {% else %}
-        <p>No resources found</p>
-        {% endif %}
-    </details> {% endcomment %}
-
-    {% comment %} <details class="details-button">
-        {% for speaker in webinar.speakers %}
-        <summary><strong>About speaker</strong></summary>
-        <img src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"
-            class="speakers-image" alt="Speaker Picture">
-        <p>{{ speaker.avl_speakers_id.fullname }}</p>
-        <p>{{ speaker.avl_speakers_id.entitle }}</p>
-        {% endfor %}
-    </details> {% endcomment %}
-    </div>
-
-
-
-
-
-
-
-
+    </section>
 
 </main>
 

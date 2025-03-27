@@ -237,4 +237,8 @@ h1 {
         text-decoration: none;
         color: var(--alt-text-color);
     }
+
+    footer img {
+        display: block;
+    }
 }
