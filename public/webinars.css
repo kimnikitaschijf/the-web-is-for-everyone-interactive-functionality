@@ -43,7 +43,6 @@
     border: none;
     border-radius: var(--border-radius-sm);
     color: var(--alt-text-color);
-    margin: 1rem;
 }
 
 .details-field {
@@ -329,7 +328,6 @@ button {
         border: none;
         border-radius: var(--border-radius-sm);
         color: var(--alt-text-color);
-        margin-left: 5.5rem;
     }
 
     .detail-buttons-details {
@@ -519,7 +517,6 @@ button {
         border: none;
         border-radius: var(--border-radius-sm);
         color: var(--alt-text-color);
-        margin-left: 5.5rem;
     }
 
     /* Buttons in details sections */

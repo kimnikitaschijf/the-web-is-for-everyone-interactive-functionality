@@ -34,15 +34,16 @@ app.get('/', async function (request, response) {
   response.render('index.liquid', { webinars: webinarsResponseJSON.data });
 });
 
-// Route voor alle webinars (overzichtspagina)
-// app.get("/webinars/", async function (request, response) {
-//   const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
-//   const webinarUrlFilters = "?fields=title,views,video,date,duration,resources,slug,thumbnail,categories.*.*,speakers.*.*,transcript";
-//   const webinarsResponse = await fetch(webinarUrl + webinarUrlFilters);
-//   const webinarsResponseJSON = await webinarsResponse.json();
+app.get('/webinars', async function (request, response) {
+  const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
+  const webinarUrlFilters = "?fields=title,thumbnail,date,slug,categories.*.*,speakers.*.*";
+  const webinarsResponse = await fetch(webinarUrl + webinarUrlFilters);
+  const webinarsResponseJSON = await webinarsResponse.json();
 
-//   response.render("webinars.liquid", { webinars: webinarsResponseJSON.data });
-// });
+  // Render webinar-overzicht.liquid uit de Views map
+  response.render('webinar-overzicht.liquid', { webinars: webinarsResponseJSON.data });
+});
+
 
 // Nieuwe route voor individuele webinars op basis van slug
 app.get("/webinars/:slug", async function (request, response) {
