@@ -47,7 +47,7 @@ app.get('/', async function (request, response) {
 // Nieuwe route voor individuele webinars op basis van slug
 app.get("/webinars/:slug", async function (request, response) {
   const slug = request.params.slug;
-  
+
   // haal webinar ID op
   const webinarID = await fetch("https://fdnd-agency.directus.app/items/avl_webinars?fields=id&filter[slug][_eq]=" + slug)
   const webinarIDJSON = await webinarID.json();
@@ -60,7 +60,6 @@ app.get("/webinars/:slug", async function (request, response) {
   // haal alle data van de comments op
   const webinarComments = await fetch("https://fdnd-agency.directus.app/items/avl_comments?filter[webinar_id][_eq]=" + webID)
   const webinarCommentsJSON = await webinarComments.json();
-
 
   response.render("webinar-detail.liquid", {
     webinar: webinarResponseJSON.data[0],
