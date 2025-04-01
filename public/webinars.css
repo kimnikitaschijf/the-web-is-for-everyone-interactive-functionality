@@ -30,32 +30,30 @@
 
 .webinar-video {
     width: 100%;
-    max-width: 45rem;
+    max-width: 50rem;
     margin: auto;
     padding: 0.5rem;
 }
 
-section {
-    .details-page-h1 {
-        font-weight: 800;
-        font-size: 1.2rem;
-        margin-left: 1rem;
-    }
+.details-page-h1 {
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
 
-    .speaker-info {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        margin: 1rem 0rem;
-    }
+.speaker-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1rem 0rem;
+}
 
-    .speakers-image {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin: 1rem;
-        border: solid 1px var(--primary-color);
-    }
+.speakers-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 1rem;
+    border: solid 1px var(--primary-color);
 }
 
 
@@ -78,10 +76,6 @@ section {
         color: var(--text-color);
         gap: 1rem;
     }
-
-    summary li {
-        list-style: none;
-    }
 }
 
 .detail-buttons-details {
@@ -101,16 +95,11 @@ section {
         border-radius: var(--border-radius-sm);
         color: var(--alt-text-color);
     }
+
+    .detail-buttons-details [open] {
+        width: auto;
+    }
 }
-
-details[open] p {
-    color: var(--text-color);
-    width: 100%;
-    max-width: 23rem;
-}
-
-
-
 
 
 h2 {
@@ -127,7 +116,6 @@ h2 {
     border-radius: var(--border-radius-md);
     margin: 1rem;
 }
-
 
 .input-container {
     display: flex;
@@ -179,19 +167,40 @@ h2 {
 
 /* tablet formaat */
 @media (min-width: 768px) {
+    .back-button:hover {
+        background-color: var(--hover-state-color);
+    }
+
     .webinar-video {
-        width: 41rem;
-        margin: 0.8rem auto;
+        width: 100%;
+        max-width: 65rem;
+        margin: auto;
+        padding: 0.5rem;
+    }
+
+    .details-page-h1 {
+        font-weight: 800;
+        font-size: 1.4rem;
+        margin: 1rem;
+    }
+
+    .speakers-image {
+        width: 60px;
+        height: auto;
+       
+    }
+    
+    .speaker-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 0rem;
     }
 
     .info-text {
         display: grid;
         grid-template-columns: 2fr 1fr;
         align-items: center;
-    }
-
-    .speaker-info {
-        display: inline-flex;
     }
 
     .speaker-name {
@@ -220,125 +229,146 @@ h2 {
 
     .details-field {
         padding: var(--padding-button);
-        width: 650px;
-        margin: 1rem 0rem 1rem 0rem;
+        width: fit-content;
+        margin: 1rem;
         text-transform: capitalize;
         background-color: var(--secondary-background-color);
-        border: none;
         border-radius: var(--border-radius-sm);
         cursor: pointer;
-        color: var(--alt-text-color);
+        line-height: 1.5rem;
+        transition: width 0.3s ease;
     }
 
-    .description-summary {
+    .details-field[open] {
+        width: auto;
+    }
+
+    .details-field .description-summary {
         color: var(--text-color);
-        display: flex;
+    }
+
+    .details-field .transcript-text {
+        list-style: none;
+        color: var(--text-color);
         gap: 1rem;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-
-    details[open] p {
-        color: var(--text-color);
-
-        li {
-            color: var(--text-color);
-        }
-    }
-
-    .form-section {
-        border-radius: var(--border-radius-md);
-        margin: 1rem 0rem 1rem 0rem;
-    }
-
-    .comment-section {
-        /* background-color: var(--comment-background-color); */
-        border-radius: var(--border-radius-md);
-        /* padding: 0rem 1rem; */
-        height: 300px;
-        /* overflow-y: scroll; */
-        width: 650px;
-        color: var(--text-color);
-        /* margin: auto; */
-        /* border: solid 1.2px black; */
-    }
-
-    .comments {
-        display: grid;
-        column-gap: var(--gap);
-        align-items: center;
-        margin: 1rem 0rem 1rem 0rem;
-    }
-
-    .replies {
-        margin-left: 1rem;
-    }
-
-    .sub-title {
-        font-weight: bold;
-        margin: 1rem 0rem 1rem 0rem;
-    }
-
-    form {
-        justify-self: center;
-    }
-
-    input {
-        width: 530px;
-        padding: 0.8rem;
-        gap: 0;
-        border: none;
-        border-radius: var(--border-radius-input);
-
-    }
-
-    button {
-        width: 120px;
-        padding: 0.8rem;
-        border: none;
-        background-color: var(--primary-color);
-        margin-left: -0.2rem;
-        border-radius: var(--border-radius-send);
-        color: var(--alt-text-color);
-    }
-
-    .transcript-button,
-    .resource-button {
-        width: fit-content;
-        padding: 0.8rem;
-        margin: 1rem 0rem 1rem 0rem;
-        border: none;
-        background-color: var(--primary-color);
-        margin-left: -0.2rem;
-        border-radius: var(--border-radius-md);
-        color: var(--alt-text-color);
-    }
-
-    h2,
-    h3 {
-        margin: 1rem 0 1rem 0;
-        font-weight: bold;
-    }
-
-    .categorie-box {
-        padding: var(--padding-button);
-        width: fit-content;
-        text-transform: capitalize;
-        background-color: var(--accent-color);
-        border: none;
-        border-radius: var(--border-radius-sm);
-        color: var(--alt-text-color);
-    }
-
-    .detail-buttons-details {
-        display: flex;
-        gap: 2rem;
-        align-content: center;
-        align-items: center;
-        justify-content: flex-start;
     }
 }
+
+.transcript-button,
+.resource-button {
+    cursor: pointer;
+}
+
+.form-section {
+    border-radius: var(--border-radius-md);
+    margin: 1rem;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 50rem;
+    background: var(--background-color);
+    border-radius: 20px;
+    overflow: hidden;
+
+    input[type="text"] {
+        flex: 1;
+        border: none;
+        padding: var(--padding-input);
+        font-size: 1rem;
+        outline: none;
+        border-radius: var(--border-radius-sm);
+    }
+
+    .send-button {
+        background: var(--secondary-color);
+        color: var(--alt-text-color);
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+
+        .send-button:hover {
+            background: var(--hover-state-color);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
