@@ -47,17 +47,18 @@ a {
     --secondary-color: #008c72;
     --background-color: #f4f4f4;
     --secondary-background-color: #e0e0e0;
-    --background-category-color: #cce7ff;
+    --background-category-color: #18b2a2;
     --hover-state-color: #66c2a5;
-    --accent-color: #003f5c;
+    --accent-color:  #dae003;
     --menu-color: #004c70;
     --menu-color-hover: #003f5c;
     --comment-background-color: #d9f2e6;
+    --button-color: #0db5cc;
 
     --padding-button: 8px 16px;
+    --padding-input: 10px 18px;
     --padding-label: 4px;
     --border-radius-sm: 6px;
-    --border-radius-md: 12px;
     --border-nav: 3px solid var(--primary-color);
     --border-radius-input: 12px 0px 0px 12px;
     --border-radius-send: 0px 12px 12px 0px;
@@ -67,6 +68,7 @@ a {
     --focus: solid 3px hsl(321, 58%, 55%);
 }
 
+#cce7ff
 /* ---------- Algemene element styling ---------- */
 ul li {
     list-style: none;

@@ -1,4 +1,60 @@
 {% render 'partials/head.liquid' %}
 
+<main id="content">
+
+    <h1>Oncollaboration</h1>
+
+    <section>
+        <h2>Who are we?</h2>
+        <p class="about-us-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+        </p>
+    </section>
+
+    <h2>Partners:</h2>
+
+    <h2>Webinars:</h2>
+    <section class="webinars-container-scroll">
+        {% comment %} webinar data inladen {% endcomment %}
+        {% for webinar in webinars %}
+        <a href="/webinars/{{ webinar.slug }}" class="webinar-link">
+            <article class="webinar-item">
+
+                {% comment %} thumbnail {% endcomment %}
+                <img src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}" class="thumbnail-img">
+
+                {% comment %} title {% endcomment %}
+                <h2 class="webinar-title">{{ webinar.title }}</h2>
+
+                {% comment %} speaker {% endcomment %}
+                {% for speaker in webinar.speakers %}
+                <p class="speakers-text">{{ speaker.avl_speakers_id.fullname }}</p>
+                {% endfor %}
+
+                <p class="date-text">{{ webinar.date }}</p>
+
+                {% comment %} categorie {% endcomment %}
+                {% for categories in webinar.categories %}
+                <p class="categorie-box">{{ categories.avl_categories_id.name }}</p>
+                {% endfor %}
+
+            </article>
+        </a>
+        {% endfor %}
+    </section>
+
+
+        <h2>Contourings:</h2>
+        <section class="contourings-container-scroll">
+        
+        </section>
+
+
+
+
+</main>
 
 {% render 'partials/foot.liquid' %}
