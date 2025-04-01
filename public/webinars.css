@@ -1,3 +1,6 @@
+/* MARK:Mobile + algemene styling */
+
+
 .nav-cat-buttons {
     display: flex;
     justify-content: space-between;
@@ -25,7 +28,6 @@
         color: var(--text-color);
         font-weight: bold;
     }
-
 }
 
 .webinar-video {
@@ -55,7 +57,6 @@
     margin: 1rem;
     border: solid 1px var(--primary-color);
 }
-
 
 .details-field {
     padding: var(--padding-button);
@@ -100,7 +101,6 @@
         width: auto;
     }
 }
-
 
 h2 {
     margin: 1.5rem 1rem 1.5rem 1rem;
@@ -154,15 +154,7 @@ h2 {
 }
 
 
-
-
-
-
-
-
-
-
-
+/* MARK:Tablet */
 
 
 /* tablet formaat */
@@ -182,7 +174,6 @@ h2 {
     .speakers-image {
         width: 60px;
         height: auto;
-
     }
 
     .speaker-info {
@@ -236,258 +227,29 @@ h2 {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* MARK:Desktop */
 
 
 /* Responsive voor min-width 1024px (Desktop en Large Tablets) */
 @media (min-width: 1024px) {
-    .page-content {
-        justify-self: center;
+   main {
+    margin: 1rem;
+    min-height: 100vh;
+    padding-bottom: 50px;
+    transition: margin-top 0.5s ease-in-out;
+   }
+
+    .nav-cat-buttons {
+        justify-content: flex-start;
+        gap: 3rem;
     }
 
-    /* Video container */
     .webinar-video {
-        width: 70rem;
-        margin: 1rem auto;
+        max-width: 68rem;
+        margin: 0;
     }
 
-    .details-page-h1 {
-        font-weight: 800;
-        text-align: left;
-        margin-left: 0.5rem;
-        margin-top: -0.3rem;
-        font-size: 1.5rem;
-    }
-
-
-    /* Speaker info */
-    .speaker-info {
-        display: flex;
-        justify-content: flex-start;
-        gap: 1.5rem;
-    }
-
-    .speaker-name {
-        display: grid;
-        margin: 1rem 0.5rem;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        line-clamp: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    /* Webinar info */
-    .webinar-info {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        margin: 0.5rem;
-        color: var(--primary-color);
-        gap: 1rem;
-    }
-
-    .webinar-info p:last-of-type {
-        margin-right: auto;
-        grid-row: 2;
-    }
-
-    /* Detail sectie */
-    .details-field {
-        padding: var(--padding-button);
-        width: 700px;
-        margin: 1rem 0;
-        text-transform: capitalize;
-        background-color: var(--secondary-background-color);
-        border: none;
-        border-radius: var(--border-radius-sm);
-        cursor: pointer;
-        color: var(--alt-text-color);
-    }
-
-    .description-summary {
-        color: var(--text-color);
-        display: flex;
-        gap: 1.5rem;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    details[open] p {
-        color: var(--text-color);
-
-        li {
-            color: var(--text-color);
-        }
-    }
-
-    /* Form section */
-    .form-section {
-        border-radius: var(--border-radius-md);
-        margin: 1rem auto;
-        width: 700px;
-        /* Breder voor desktop */
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    /* Input en button uitlijning en grootte */
-    input,
-    button {
-        padding: 1rem;
-        border-radius: var(--border-radius-input);
-    }
-
-    /* Input styling */
-    input {
-        background-color: var(--input-background-color);
-        /* Toevoegen voor contrast */
-        color: var(--input-text-color);
-        /* Optioneel, voor contrast */
-    }
-
-    /* Button styling */
-    button {
-        background-color: var(--primary-color);
-        color: var(--alt-text-color);
-        border-radius: var(--border-radius-send);
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        /* Animatie voor hover */
-    }
-
-    button:hover {
-        background-color: var(--primary-color-hover);
-        /* Verander kleur bij hover */
-    }
-
-    /* Comment section */
-    .comment-section {
-        border-radius: var(--border-radius-md);
-        height: 400px;
-        /* Meer ruimte voor opmerkingen */
-        width: 700px;
-        color: var(--text-color);
-        margin: 1rem auto;
-    }
-
-    .comments {
-        display: grid;
-        gap: 1rem;
-        margin: 1rem 0;
-    }
-
-    .replies {
-        margin-left: 1.5rem;
-    }
-
-    .sub-title {
-        font-weight: bold;
-        margin: 1rem 0;
-    }
-
-    /* Category box */
-    .categorie-box {
-        padding: var(--padding-button);
-        width: fit-content;
-        text-transform: capitalize;
-        background-color: var(--accent-color);
-        border: none;
-        border-radius: var(--border-radius-sm);
-        color: var(--alt-text-color);
-    }
-
-    /* Buttons in details sections */
-    .detail-buttons-details {
-        display: flex;
-        gap: 2rem;
-        align-items: center;
-        justify-content: flex-start;
+    .details-field[open] {
+        width: 66rem;
     }
 }

@@ -14,10 +14,10 @@ html {
 }
 
 main {
-    margin: 0 auto;
+    /* margin: 0 auto; */
     min-height: 100vh;
     padding-bottom: 50px;
-    transition: margin-top 0.5s ease-in-out;
+    transition: margin-top 0.2s ease-in-out;
 }
 
 a {
