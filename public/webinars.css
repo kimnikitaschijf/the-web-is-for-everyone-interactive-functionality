@@ -139,7 +139,7 @@ h2 {
         background: var(--secondary-color);
         color: var(--alt-text-color);
         border: none;
-        padding: 10px 20px;
+        padding: var(--padding-input);
         font-size: 1rem;
         cursor: pointer;
 
@@ -172,46 +172,21 @@ h2 {
     }
 
     .webinar-video {
-        width: 100%;
         max-width: 65rem;
-        margin: auto;
-        padding: 0.5rem;
     }
 
     .details-page-h1 {
-        font-weight: 800;
         font-size: 1.4rem;
-        margin: 1rem;
     }
 
     .speakers-image {
         width: 60px;
         height: auto;
-       
+
     }
-    
+
     .speaker-info {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
         margin: 0rem;
-    }
-
-    .info-text {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        align-items: center;
-    }
-
-    .speaker-name {
-        display: grid;
-        margin: 1rem 0.5rem;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        line-clamp: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
     }
 
     .webinar-info {
@@ -225,18 +200,6 @@ h2 {
     .webinar-info p:last-of-type {
         margin-right: auto;
         grid-row: 2;
-    }
-
-    .details-field {
-        padding: var(--padding-button);
-        width: fit-content;
-        margin: 1rem;
-        text-transform: capitalize;
-        background-color: var(--secondary-background-color);
-        border-radius: var(--border-radius-sm);
-        cursor: pointer;
-        line-height: 1.5rem;
-        transition: width 0.3s ease;
     }
 
     .details-field[open] {
@@ -265,36 +228,13 @@ h2 {
 }
 
 .input-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
     max-width: 50rem;
-    background: var(--background-color);
-    border-radius: 20px;
-    overflow: hidden;
 
-    input[type="text"] {
-        flex: 1;
-        border: none;
-        padding: var(--padding-input);
-        font-size: 1rem;
-        outline: none;
-        border-radius: var(--border-radius-sm);
-    }
-
-    .send-button {
-        background: var(--secondary-color);
-        color: var(--alt-text-color);
-        border: none;
-        padding: 10px 20px;
-        font-size: 1rem;
-        cursor: pointer;
-
-        .send-button:hover {
-            background: var(--hover-state-color);
-        }
+    .send-button:hover {
+        background: var(--hover-state-color);
     }
 }
+
 
 
 
@@ -405,13 +345,6 @@ h2 {
         font-size: 1.5rem;
     }
 
-    /* Info sectie */
-    .info-text {
-        display: grid;
-        grid-template-columns: 3fr 2fr;
-        align-items: center;
-        gap: 2rem;
-    }
 
     /* Speaker info */
     .speaker-info {

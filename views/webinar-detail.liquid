@@ -31,19 +31,16 @@
         <h1 class="details-page-h1">{{ webinar.title }}</h1>
 
         {% comment %} grid layout voor info onder titel {% endcomment %}
-        <div class="info-text">
-
-            {% comment %} speaker info {% endcomment %}
-            <div class="speaker-info">
-                {% for speaker in webinar.speakers %}
-                <img src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"
-                    class="speakers-image" alt="Picture of {{ speaker.avl_speakers_id.fullname }}">
-                <div>
-                    <p>{{ speaker.avl_speakers_id.fullname }}</p>
-                    <p>{{ speaker.avl_speakers_id.entitle }}</p>
-                </div>
-                {% endfor %}
+        {% comment %} speaker info {% endcomment %}
+        <div class="speaker-info">
+            {% for speaker in webinar.speakers %}
+            <img src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"
+                class="speakers-image" alt="Picture of {{ speaker.avl_speakers_id.fullname }}">
+            <div>
+                <p>{{ speaker.avl_speakers_id.fullname }}</p>
+                <p>{{ speaker.avl_speakers_id.entitle }}</p>
             </div>
+            {% endfor %}
         </div>
     </section>
 
