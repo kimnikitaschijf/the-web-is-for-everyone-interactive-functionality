@@ -1,7 +1,7 @@
 /* MARK: Mobile + Algemene Styling */
 
 /* Algemene filter styling */
-h1 {
+.page-title {
     margin: 2rem;
     font-weight: bold;
     text-align: center;
@@ -150,7 +150,7 @@ margin: auto;
 
 /* Styling voor desktop formaat */
 @media (min-width: 1024px) {
-    h1 {
+    .page-title {
         margin: 2rem 1rem;
     }
 
