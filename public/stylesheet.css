@@ -1,4 +1,4 @@
-/* Algemene instellingen */
+/* MARK: General  */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -24,7 +24,7 @@ a {
     text-decoration: none;
 }
 
-/* ---------- :root variabelen ---------- */
+/* MARK: :root variabelen */
 :root {
     --font: "lato", sans-serif;
     --heading-font: "VagRundschrift", sans-serif;
@@ -48,7 +48,7 @@ a {
     --secondary-background-color: #e0e0e0;
     --background-category-color: #18b2a2;
     --hover-state-color: #66c2a5;
-    --accent-color:  #dae003;
+    --accent-color: #dae003;
     --menu-color: #004c70;
     --menu-color-hover: #003f5c;
     --comment-background-color: #d9f2e6;
@@ -68,7 +68,8 @@ a {
 }
 
 #cce7ff
-/* ---------- Algemene element styling ---------- */
+
+/*  MARK: Element styling  */
 ul li {
     list-style: none;
     color: var(--text-color);
@@ -91,7 +92,7 @@ button {
     cursor: pointer;
 }
 
-/* ---------- Stijl voor de footer ---------- */
+/*  MARK: Footer  */
 footer {
     background-color: var(--primary-color);
     color: var(--alt-text-color);
@@ -110,7 +111,6 @@ footer a {
     text-decoration: none;
 }
 
-/* Zorg ervoor dat de footer onderaan blijft als er meer inhoud is */
 footer {
     position: relative;
     bottom: 0;
@@ -122,12 +122,10 @@ footer img {
     display: none;
 }
 
-/* Responsive footer styling */
 footer p {
     text-align: left;
 }
 
-/* UL en LI styling voor footer */
 footer ul {
     display: flex;
     flex-direction: column;
@@ -145,17 +143,17 @@ footer ul li a {
     padding: 5px 0;
 }
 
-/* Verberg de afbeeldingen op mobiel (standaard) */
 footer img {
     display: none;
 }
 
-/* ---------- Media queries ---------- */
+/*  MARK: Media queries  */
 
 /* Kleine schermen - onder 768px */
 @media (max-width: 768px) {
     footer img {
-        display: none; /* Verberg de plaatjes */
+        display: none;
+        /* Verberg de plaatjes */
     }
 
     footer ul {
@@ -198,7 +196,7 @@ footer img {
     }
 }
 
-/* ---------- Navigatie styling ---------- */
+/*  MARK: Nav styling  */
 nav {
     background-color: var(--primary-color);
     display: flex;
@@ -227,7 +225,6 @@ nav .nav-links a {
     text-align: center;
 }
 
-/* Hamburger menu */
 .menu-toggle {
     display: none;
     cursor: pointer;
@@ -238,7 +235,9 @@ nav .nav-links a {
     height: 40px;
 }
 
-/* ---------- Mobiele navigatie instellingen (smaller than 768px) ---------- */
+/* MARK: Media queries */
+
+/*  Mobiele navigatie instellingen (smaller than 768px)  */
 @media (max-width: 768px) {
     nav .nav-links {
         display: none;
@@ -268,7 +267,7 @@ nav .nav-links a {
     }
 }
 
-/* ---------- Als de schermbreedte groter is dan 768px ---------- */
+/*  Als de schermbreedte groter is dan 768px  */
 @media (min-width: 768px) {
     .menu-toggle {
         display: none;
@@ -281,4 +280,23 @@ nav .nav-links a {
         gap: 1rem;
         align-items: center;
     }
+}
+
+/*      MARK: 404     */
+.h1404 {
+    font-size: var(--font-size-6xl);
+    justify-self: center;
+    padding-left: 5%;
+}
+
+.h2404 {
+    font-size: var(--font-size-6xl);
+    justify-self: center;
+    padding-left: 5%;
+}
+
+.p404 {
+    font-size: var(--font-size-lg);
+    justify-self: center;
+    padding-left: 5%;
 }

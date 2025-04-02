@@ -92,6 +92,11 @@ app.get("/webinars/:slug", async function (request, response) {
 });
 
 
+app.get('/404', async function (request, response) {
+  response.render('partials/404.liquid')
+})
+
+
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
 app.get(…, async function (request, response) {
@@ -120,6 +125,7 @@ app.post("/webinars/:slug/:id", async function (request, response) {
 
 
 })
+
 
 
 /*
