@@ -72,8 +72,8 @@
             <p>No resources found</p>
             {% endif %}
         </details>
-     </div>
-     
+    </div>
+
 
 
     {% comment %} comment sectie {% endcomment %}
@@ -82,20 +82,23 @@
 
     <div class="form-section">
         {% if webinar.slug and webinar.id %}
-        <form method="post" action="{{ webinar.slug }}/{{ webinar.id }}">
-            {% else %}
-            <form method="post" action="#">
-                {% endif %}
-                <div class="input-container">
-                    <input type="text" name="comment" placeholder="Add a comment...">
-                    <button type="submit" class="send-button">Send</button>
-                </div>
-            </form>
+        <form method="post" action="{{ webinar.slug }}/{{ webinar.id }}" id="commentForm">
+        {% else %}
+        <form method="post" action="#" id="commentForm">
+        {% endif %}
+            <div class="input-container">
+                <input type="text" name="comment" placeholder="Add a comment..." id="commentInput">
+                <button type="submit" class="send-button" id="sendButton"
+                    onclick="this.classList.toggle('send-button--loading')">
+                    <span class="send-button__text">Send</span>
+                </button>
+            </div>
+        </form>
     </div>
-
+    
     <div class="comment-section">
         <h2><strong>Comments</strong></h2>
-        <div>
+        <div id="commentsContainer">
             {% for comment in comments %}
             {% if comment.parent_id == null %}
             <p class="comments">{{ comment.content }}</p>
@@ -109,5 +112,114 @@
     </section>
 
 </main>
+
+
+
+
+
+<script type="module">
+    // We maken hieronder aannames over wat de browser ondersteunt
+    // Dus laten we deze eerst testen met Feature Detection
+    // https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Feature_detection
+    if ('fetch' in window && 'DOMParser' in window) {
+
+        // Als er ergens op de pagina een formulier wordt gesubmit..
+        // (We maken hier gebruik van Event Delegation)
+        document.addEventListener('submit', async function (event) {
+
+            // Hou in een variabele bij welk formulier dat was
+            const form = event.target;
+
+            // Voorkom de standaard submit van de browser
+            // Let op: hiermee overschrijven we de default Loading state van de browser...
+            event.preventDefault();
+
+            // LAAD STATUS tonen
+            const button = document.getElementById("sendButton");
+            const loader = document.getElementById("loader");
+            const buttonText = document.querySelector(".send-button__text");
+
+            // Toon de loading state (spinner), verberg de tekst en disable de button
+            button.classList.add("send-button--loading");  
+            button.disabled = true;  //button doet het even niet meer, omdat de actie bezig is...
+            buttonText.classList.add("hidden"); 
+
+
+            // Maak een nieuw commentaar object (je kunt hier ook andere data toevoegen zoals 'date' en 'isReply' voor reply-commentaar)
+            const newComment = {
+                text: form.querySelector('input[name="comment"]').value, // Haal de waarde van het formulier op
+                date: new Date().toLocaleString(),
+                isReply: false // Voeg een flag toe om onderscheid te maken tussen gewone en reply comments
+            };
+
+            // Voeg het nieuwe comment direct toe aan de DOM (zodra het wordt gepost)
+            addCommentToDOM(newComment);
+
+            // Doe een fetch naar de server, net als hoe de browser dit normaal zou doen
+            // Gebruik daarvoor het action en method attribuut van het originele formulier
+            // Inclusief alle formulierelementen
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: new URLSearchParams(new FormData(form))
+            });
+
+            // De server redirect op de normale manier, en geeft HTML terug
+            // (De server weet niet eens dat deze fetch via client-side JavaScript gebeurde)
+            const responseText = await response.text();
+
+            // Normaal zou de browser die HTML parsen en weergeven, maar daar moeten we nu zelf iets mee
+            // Parse de nieuwe HTML en maak hiervan een nieuw Document Object Model in het geheugen
+            const parser = new DOMParser();
+            const responseDOM = parser.parseFromString(responseText, 'text/html');
+            console.log(responseDOM);
+
+            
+            // LOADING STATE WEGHALEN 
+            // Verberg de spinner en enable de button
+            button.classList.remove("send-button--loading");  
+            button.disabled = false;  //nu doet de button het weer
+            //hier kan je ook het form fields leeg maken, dit ding: <input type="text" name="comment" placeholder="Add a comment...">
+
+            // Maak het tekstveld leeg na het versturen van de opmerking
+            commentInput.value = '';
+
+            buttonText.classList.remove("hidden"); 
+
+            // Als de server een succesvolle response geeft, bevestig dan de succesvolle post
+            if (response.ok) {
+                console.log('Comment succesvol gepost');
+                // Optioneel kun je hier ook iets doen, bijvoorbeeld de comment bevestigen
+            } else {
+                console.error("Er is een fout opgetreden bij het posten van de opmerking");
+                // Hier kun je een foutmelding tonen of de comment verwijderen als het niet succesvol was
+            }
+        });
+
+        // Functie om de nieuwe opmerking aan de DOM toe te voegen
+        function addCommentToDOM(comment) {
+            const commentsContainer = document.getElementById('commentsContainer');
+
+            const commentElement = document.createElement('p'); // Gebruik <p> zoals in bestaande comments
+            commentElement.textContent = comment.text;
+
+            // Voeg de juiste class toe (zelfde als voor bestaande comments)
+            if (comment.isReply) {
+                commentElement.classList.add('replies'); // Voeg 'replies' toe als het een reply is
+            } else {
+                commentElement.classList.add('comments'); // Voeg 'comments' toe voor een gewone comment
+            }
+
+            commentsContainer.prepend(commentElement); // Plaats de nieuwe opmerking bovenaan
+        }
+    }
+</script>
+
+
+{% comment %} moet nu alleen nog zorgen dat de comments standaard de nieuwste bovenaan zetten {% endcomment %}
+
+
+
+
+
 
 {% render 'partials/foot.liquid' %}

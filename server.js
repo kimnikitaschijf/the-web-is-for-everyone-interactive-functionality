@@ -82,7 +82,7 @@ app.get("/webinars/:slug", async function (request, response) {
   const webinarResponseJSON = await webinarResponse.json();
 
   // haal alle data van de comments op
-  const webinarComments = await fetch("https://fdnd-agency.directus.app/items/avl_comments?filter[webinar_id][_eq]=" + webID)
+  const webinarComments = await fetch("https://fdnd-agency.directus.app/items/avl_comments?filter[webinar_id][_eq]=" + webID +"&sort`=-id")
   const webinarCommentsJSON = await webinarComments.json();
 
   response.render("webinar-detail.liquid", {

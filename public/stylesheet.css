@@ -53,6 +53,7 @@ a {
     --menu-color-hover: #003f5c;
     --comment-background-color: #d9f2e6;
     --button-color: #0db5cc;
+    --disabled-color: #386b61;
 
     --padding-button: 8px 16px;
     --padding-input: 10px 18px;
