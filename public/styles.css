@@ -63,6 +63,9 @@ margin: auto;
         display: grid;
         align-items: center;
         justify-items: start;
+        background-color: var(--secondary-background-color);
+        padding: var(--padding-button);
+        border-radius: var(--border-radius-sm);
     }
 }
 
@@ -84,6 +87,17 @@ margin: auto;
     height: 100%;
     object-fit: contain;
     border-radius: var(--border-radius-sm);
+}
+
+/* Fallback voor browsers die object-fit NIET ondersteunen */
+@supports not (object-fit: contain) {
+    .webinar-thumbnail-img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+    }
 }
 
 .webinar-speaker-name,
@@ -139,6 +153,11 @@ Tablet */
         gap: 1rem 2rem;
     }
 
+
+    .filter-select::-webkit-scrollbar {
+        display: none;
+    }
+
     .filter-buttons {
         &:hover {
             transform: scale(1.05);
@@ -187,6 +206,11 @@ Desktop */
 
     .nav-links a:hover {
         font-weight: bold;
+    }
+
+
+    .filter-select::-webkit-scrollbar {
+        display: none;
     }
 
     .filter-buttons {
@@ -500,3 +524,44 @@ Desktop */
       transform: rotate(1turn);
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* MARK: Home M
+  Mobile */
