@@ -45,7 +45,7 @@ a {
     --primary-color: #005185;
     --secondary-color: #008c72;
     --background-color: #f4f4f4;
-    --secondary-background-color: #e0e0e0;
+    --secondary-background-color: #dadada;
     --background-category-color: #18b2a2;
     --hover-state-color: #66c2a5;
     --accent-color: #dae003;
@@ -300,4 +300,30 @@ nav .nav-links a {
     font-size: var(--font-size-lg);
     justify-self: center;
     padding-left: 5%;
+}
+
+
+/* MARK: Empty state */
+
+.empty_state {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .h3-empty-state {
+        margin: 0rem;
+        text-align: center;
+        font-weight: normal;
+        color: var(--primary-color)
+    }
+
+    .p-empty-state {
+        font-size: 1rem;
+        margin: 1rem;
+        color: var(--text-color);
+        text-align: center;
+    }
 }
