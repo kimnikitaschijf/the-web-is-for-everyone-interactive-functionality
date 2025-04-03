@@ -3,9 +3,10 @@
 <main id="content">
 
     {% comment %} back button {% endcomment %}
-
     <div class="nav-cat-buttons">
-        <a href="webinar-overzicht.liquid" class="back-button">Return to webinars</a>
+        <button onclick="location.href='webinar-overzicht.liquid';" class="back-button">
+            Return to webinars
+        </button>
 
         <div>
             {% comment %} categorie button {% endcomment %}
@@ -19,11 +20,18 @@
 
     {% comment %} webinar video {% endcomment %}
     <div class="webinar-video">
-        {% for video in webinar.video %}
-        <video controls class="webinar-video">
-            <source src="https://fdnd-agency.directus.app/assets/{{ video }}" />
-        </video>
-        {% endfor %}
+        {% if webinar.video %}
+            {% for video in webinar.video %}
+            <video controls class="webinar-video">
+                <source src="https://fdnd-agency.directus.app/assets/{{ video }}" />
+            </video>
+            {% endfor %}
+        {% else %}
+            <div class="empty_state">
+                <h3 class="h3-empty-state">No video found</h3>
+                <p class="p-empty-state">There is no video available for this webinar yet</p>
+            </div>
+        {% endif %}
     </div>
 
     <section class="page-content">
@@ -33,14 +41,21 @@
         {% comment %} grid layout voor info onder titel {% endcomment %}
         {% comment %} speaker info {% endcomment %}
         <div class="speaker-info">
-            {% for speaker in webinar.speakers %}
-            <img src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"
-                class="speakers-image" alt="Picture of {{ speaker.avl_speakers_id.fullname }}">
-            <div>
-                <p>{{ speaker.avl_speakers_id.fullname }}</p>
-                <p>{{ speaker.avl_speakers_id.entitle }}</p>
-            </div>
-            {% endfor %}
+            {% if webinar.speakers %}
+                {% for speaker in webinar.speakers %}
+                <img src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"
+                    class="speakers-image" alt="Picture of {{ speaker.avl_speakers_id.fullname }}">
+                <div>
+                    <p>{{ speaker.avl_speakers_id.fullname }}</p>
+                    <p>{{ speaker.avl_speakers_id.entitle }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty_state">
+                    <h3 class="h3-empty-state">No speakers found</h3>
+                    <p class="p-empty-state">There are no speakers assigned to this webinar</p>
+                </div>
+            {% endif %}
         </div>
     </section>
 
@@ -59,25 +74,25 @@
         <details class="transcript-button">
             <summary><strong>Read transcript</strong></summary>
             {% if webinar.transcript %}
-            <p class="transcript-text">{{ webinar.transcript }}</p>
+                <p class="transcript-text">{{ webinar.transcript }}</p>
             {% else %}
-            <p>No transcript available.</p>
+                <p>No transcript available.</p>
             {% endif %}
         </details>
         <details class="resource-button">
             <summary><strong>Resources</strong></summary>
             {% if webinar.resources %}
-            <p>{{ webinar.resources }}</p>
+                <p>{{ webinar.resources }}</p>
             {% else %}
-            <p>No resources found</p>
+                <div class="empty_state">
+                    <h3 class="h3-empty-state">No resources found</h3>
+                    <p class="p-empty-state">There are no resources available for this webinar</p>
+                </div>
             {% endif %}
         </details>
     </div>
 
-
-
     {% comment %} comment sectie {% endcomment %}
-
     <h2><strong>Q&A</strong> ask a question</h2>
 
     <div class="form-section">
@@ -95,23 +110,32 @@
             </div>
         </form>
     </div>
-    
+
     <div class="comment-section">
         <h2><strong>Comments</strong></h2>
         <div id="commentsContainer">
-            {% for comment in comments %}
-            {% if comment.parent_id == null %}
-            <p class="comments">{{ comment.content }}</p>
+            {% if comments %}
+                {% for comment in comments %}
+                    {% if comment.parent_id == null %}
+                    <p class="comments">{{ comment.content }}</p>
+                    {% endif %}
+                    {% if comment.parent_id != null %}
+                    <p class="replies">{{ comment.content }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="empty_state">
+                    <h3 class="h3-empty-state">No comments found</h3>
+                    <p class="p-empty-state">There have been no comments placed in this section yet</p>
+                </div>
             {% endif %}
-            {% if comment.parent_id != null %}
-            <p class="replies">{{ comment.content }}</p>
-            {% endif %}
-            {% endfor %}
         </div>
+
     </div>
-    </section>
+</section>
 
 </main>
+
 
 
 
@@ -140,9 +164,9 @@
             const buttonText = document.querySelector(".send-button__text");
 
             // Toon de loading state (spinner), verberg de tekst en disable de button
-            button.classList.add("send-button--loading");  
+            button.classList.add("send-button--loading");
             button.disabled = true;  //button doet het even niet meer, omdat de actie bezig is...
-            buttonText.classList.add("hidden"); 
+            buttonText.classList.add("hidden");
 
 
             // Maak een nieuw commentaar object (je kunt hier ook andere data toevoegen zoals 'date' en 'isReply' voor reply-commentaar)
@@ -173,17 +197,17 @@
             const responseDOM = parser.parseFromString(responseText, 'text/html');
             console.log(responseDOM);
 
-            
+
             // LOADING STATE WEGHALEN 
             // Verberg de spinner en enable de button
-            button.classList.remove("send-button--loading");  
+            button.classList.remove("send-button--loading");
             button.disabled = false;  //nu doet de button het weer
             //hier kan je ook het form fields leeg maken, dit ding: <input type="text" name="comment" placeholder="Add a comment...">
 
             // Maak het tekstveld leeg na het versturen van de opmerking
             commentInput.value = '';
 
-            buttonText.classList.remove("hidden"); 
+            buttonText.classList.remove("hidden");
 
             // Als de server een succesvolle response geeft, bevestig dan de succesvolle post
             if (response.ok) {
