@@ -23,36 +23,22 @@ app.engine('liquid', engine.express());
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
 
-
-// Maak een GET route voor de index (meestal doe je dit in de root, als /)
 app.get('/', async function (request, response) {
+  const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
+  const webinarUrlFilters = "?fields=title,thumbnail,date,slug,categories.*.*,speakers.*.*";
+  const contouringsUrl = "https://fdnd-agency.directus.app/items/avl_contourings";
+  const contouringsUrlFilters = "?fields=title,slug,image_scan,used_literature.*.*,categories.*.*";
 
-  const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars?fields=title,thumbnail,date,slug,categories.*.*,speakers.*.*";
-  const contouringsUrl = "https://fdnd-agency.directus.app/items/avl_contourings?fields=title,slug,image_scan,used_literature.*.*,categories.*.*"
-  const webinarsResponse = await fetch(webinarUrl + contouringsUrl);
+  const webinarsResponse = await fetch(webinarUrl + webinarUrlFilters);
   const webinarsResponseJSON = await webinarsResponse.json();
 
-  console.log(webinarsResponse)
+  const contouringsResponse = await fetch(contouringsUrl + contouringsUrlFilters);
+  const contouringsResponseJSON = await contouringsResponse.json();
 
-  // Render index.liquid uit de Views map
-  response.render('index.liquid', { webinars: webinarsResponseJSON.data });
-});
-
-
-// Maak een GET route voor de index (meestal doe je dit in de root, als /)
-app.get('/', async function (request, response) {
-  const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars?fields=title,thumbnail,date,slug,categories.*.*,speakers.*.*";
-  const contouringsUrl = "https://fdnd-agency.directus.app/items/avl_contourings?fields=title,slug,image_scan,used_literature.*.*,categories.*.*";
-
-  const webinarsResponse = await fetch(webinarUrl);
-  const contouringsResponse = await fetch(contouringsUrl);
-
-  const webinarsData = await webinarsResponse.json();
-  const contouringsData = await contouringsResponse.json();
-  
+  // Render index.liquid uit de Views map met de opgehaalde data
   response.render('index.liquid', {
-    webinars: webinarsData.data,
-    contourings: contouringsData.data
+    webinars: webinarsResponseJSON.data,
+    contourings: contouringsResponseJSON.data
   });
 });
 
