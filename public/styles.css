@@ -565,3 +565,22 @@ Desktop */
 
   /* MARK: Home M
   Mobile */
+
+  .main-title {
+    margin: 1rem;
+    font-size: 2rem;
+  }
+
+  .about-us-field {
+background-color: var(--secondary-background-color);
+}
+
+.about-us-text {
+    margin: 1rem;
+    line-height: 1.5rem;
+}
+
+.h2-main-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}

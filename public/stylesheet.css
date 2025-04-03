@@ -54,6 +54,7 @@ a {
     --comment-background-color: #d9f2e6;
     --button-color: #0db5cc;
     --disabled-color: #386b61;
+    --highlight-color: #E0FFFA;
 
     --padding-button: 8px 16px;
     --padding-input: 10px 18px;
@@ -315,7 +316,7 @@ nav .nav-links a {
 
     .h3-empty-state {
         margin: 0rem;
-        text-align: center;
+        /* text-align: center; */
         font-weight: normal;
         color: var(--primary-color)
     }
@@ -324,6 +325,6 @@ nav .nav-links a {
         font-size: 1rem;
         margin: 1rem;
         color: var(--text-color);
-        text-align: center;
+        /* text-align: center; */
     }
 }

@@ -4,8 +4,7 @@
 
     <h1 class="main-title">Oncollaboration</h1>
 
-    <section>
-        <h2>Who are we?</h2>
+    <section class="about-us-field">
         <p class="about-us-text"><strong>Oncollaboration</strong> is a platform dedicated to connecting oncology
             professionals worldwide. By partnering with institutions like <strong>Antoni van Leeuwenhoek Hospital
                 (AVL)</strong> and <strong>Dr. Sardjito Hospital</strong>, we facilitate the sharing of knowledge,
@@ -14,14 +13,14 @@
         </p>
     </section>
 
-    <h2>Partners:</h2>
+    <h2 class="h2-main-title">Partners:</h2>
 
-    <h2>Webinars:</h2>
+    <h2 class="h2-main-title">Webinars:</h2>
     <section class="webinars-container-scroll">
         {% for webinar in webinars %}
         <a href="/webinars/{{ webinar.slug }}" class="webinar-link">
             <article class="webinar-item">
-                <img src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}" class="thumbnail-img">
+                <img src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}" class="webinar-thumbnail-img">
                 <h2 class="webinar-title">{{ webinar.title }}</h2>
 
                 {% for speaker in webinar.speakers %}
@@ -35,16 +34,16 @@
                 {% endfor %}
             </article>
         </a>
-        {% else %}
+        {% comment %} {% else %}
         <div class="empty_state">
             <h3 class="h3-empty-state">No webinars found</h3>
             <p class="p-empty-state">There have been no webinars found in this section yet</p>
             <a href="webinar-detail.liquid">Go to webinars</a>
-          </div>
+          </div> {% endcomment %}
         {% endfor %}
     </section>
 
-    <h2>Contourings:</h2>
+    <h2 class="h2-main-title">Contourings:</h2>
     <section class="contourings-container-scroll">
         {% for contouring in contourings %}
         <a href="/contourings/{{ contouring.slug }}" class="contouring-link">
@@ -57,12 +56,12 @@
                 {% endfor %}
             </article>
         </a>
-        {% else %}
+        {% comment %} {% else %}
         <div class="empty_state">
             <h3 class="h3-empty-state">No contourings found</h3>
             <p class="p-empty-state">There have been no contourings found in this section yet</p>
             <a href="webinar-detail.liquid">Go to contourings</a>
-          </div>
+          </div> {% endcomment %}
         {% endfor %}
     </section>
 
