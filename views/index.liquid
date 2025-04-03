@@ -2,15 +2,15 @@
 
 <main id="content">
 
-    <h1>Oncollaboration</h1>
+    <h1 class="main-title">Oncollaboration</h1>
 
     <section>
         <h2>Who are we?</h2>
-        <p class="about-us-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
+        <p class="about-us-text"><strong>Oncollaboration</strong> is a platform dedicated to connecting oncology
+            professionals worldwide. By partnering with institutions like <strong>Antoni van Leeuwenhoek Hospital
+                (AVL)</strong> and <strong>Dr. Sardjito Hospital</strong>, we facilitate the sharing of knowledge,
+            resources, and innovative tools to improve cancer care. Our mission is to support collaboration, drive
+            advancements in oncology, and ultimately enhance patient outcomes.
         </p>
     </section>
 
@@ -18,42 +18,53 @@
 
     <h2>Webinars:</h2>
     <section class="webinars-container-scroll">
-        {% comment %} webinar data inladen {% endcomment %}
         {% for webinar in webinars %}
         <a href="/webinars/{{ webinar.slug }}" class="webinar-link">
             <article class="webinar-item">
-
-                {% comment %} thumbnail {% endcomment %}
                 <img src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}" class="thumbnail-img">
-
-                {% comment %} title {% endcomment %}
                 <h2 class="webinar-title">{{ webinar.title }}</h2>
 
-                {% comment %} speaker {% endcomment %}
                 {% for speaker in webinar.speakers %}
                 <p class="speakers-text">{{ speaker.avl_speakers_id.fullname }}</p>
                 {% endfor %}
 
                 <p class="date-text">{{ webinar.date }}</p>
 
-                {% comment %} categorie {% endcomment %}
-                {% for categories in webinar.categories %}
-                <p class="categorie-box">{{ categories.avl_categories_id.name }}</p>
+                {% for category in webinar.categories %}
+                <p class="categorie-box">{{ category.avl_categories_id.name }}</p>
                 {% endfor %}
-
             </article>
         </a>
+        {% else %}
+        <div class="empty_state">
+            <h3 class="h3-empty-state">No webinars found</h3>
+            <p class="p-empty-state">There have been no webinars found in this section yet</p>
+            <a href="webinar-detail.liquid">Go to webinars</a>
+          </div>
         {% endfor %}
     </section>
 
+    <h2>Contourings:</h2>
+    <section class="contourings-container-scroll">
+        {% for contouring in contourings %}
+        <a href="/contourings/{{ contouring.slug }}" class="contouring-link">
+            <article class="contouring-item">
+                <img src="https://fdnd-agency.directus.app/assets/{{ contouring.image_scan }}" class="contouring-img">
+                <h2 class="contouring-title">{{ contouring.title }}</h2>
 
-        <h2>Contourings:</h2>
-        <section class="contourings-container-scroll">
-        
-        </section>
-
-
-
+                {% for category in contouring.categories %}
+                <p class="categorie-box">{{ category.avl_categories_id.name }}</p>
+                {% endfor %}
+            </article>
+        </a>
+        {% else %}
+        <div class="empty_state">
+            <h3 class="h3-empty-state">No contourings found</h3>
+            <p class="p-empty-state">There have been no contourings found in this section yet</p>
+            <a href="webinar-detail.liquid">Go to contourings</a>
+          </div>
+        {% endfor %}
+    </section>
 
 </main>
 
