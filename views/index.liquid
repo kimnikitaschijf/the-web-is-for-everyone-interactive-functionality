@@ -20,7 +20,8 @@
         {% for webinar in webinars %}
         <a href="/webinars/{{ webinar.slug }}" class="webinar-link">
             <article class="webinar-item">
-                <img src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}" class="webinar-thumbnail-img">
+                <img src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}"
+                    class="webinar-thumbnail-img">
                 <h2 class="webinar-title">{{ webinar.title }}</h2>
 
                 {% for speaker in webinar.speakers %}
@@ -34,12 +35,12 @@
                 {% endfor %}
             </article>
         </a>
-        {% comment %} {% else %}
+        {% else %}
         <div class="empty_state">
             <h3 class="h3-empty-state">No webinars found</h3>
             <p class="p-empty-state">There have been no webinars found in this section yet</p>
             <a href="webinar-detail.liquid">Go to webinars</a>
-          </div> {% endcomment %}
+        </div>
         {% endfor %}
     </section>
 
@@ -61,7 +62,7 @@
             <h3 class="h3-empty-state">No contourings found</h3>
             <p class="p-empty-state">There have been no contourings found in this section yet</p>
             <a href="webinar-detail.liquid">Go to contourings</a>
-          </div> {% endcomment %}
+        </div> {% endcomment %}
         {% endfor %}
     </section>
 
